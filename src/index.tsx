@@ -1,12 +1,15 @@
 import React from 'react';
+import { defineCustomElements } from '@ionic/pwa-elements/loader';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
+defineCustomElements(window);
+
 ReactDOM.render(
   <React.StrictMode>
-photo-gallery/src/App.tsx    <App />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
