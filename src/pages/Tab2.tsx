@@ -6,18 +6,7 @@ import { usePhotoGallery, UserPhoto } from '../hooks/usePhotoGallery';
 import { useState } from 'react';
 
 const Tab2: React.FC = () => {
-  const { takePhoto } = usePhotoGallery();
-  const [photos, setPhotos] = useState<UserPhoto[]>([]);
-  const fileName = new Date().getTime() + '.jpeg';
-  const newPhotos = [
-    {
-      filepath: fileName,
-      webviewPath: photo.webPath,
-    },
-    ...photos,
-  ];
-  setPhotos(newPhotos);
-  const { photos, tankPhoto } = usePhotoGallery();
+  const { photos, takePhoto } = usePhotoGallery();
 
   return (
     <IonPage>
@@ -28,6 +17,15 @@ const Tab2: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen>
         <IonContent>
+          <IonGrid>
+            <IonRow>
+              {photos.map((photo,index) => (
+                <IonCol size='6' key={index}>
+                    <IonImg src={photo.webviewPath}/>
+                </IonCol>
+              ))}
+            </IonRow>
+          </IonGrid>
           <IonFab vertical='bottom' horizontal='center' slot='fixed'>
             <IonFabButton onClick={() => takePhoto()}>
               <IonIcon icon={camera}></IonIcon>
